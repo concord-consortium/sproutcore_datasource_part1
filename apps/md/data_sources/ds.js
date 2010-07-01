@@ -21,6 +21,8 @@ Md.Ds = SC.DataSource.extend(
 /** @scope Md.Ds.prototype */ {
   
   _getFromUri: function(uri, options) {
+    console.group('Md.Ds._getFromUri()');
+    
     var notifyMethod;
     if (options.isQuery) {
       notifyMethod = this._didGetQuery;
@@ -28,15 +30,21 @@ Md.Ds = SC.DataSource.extend(
       notifyMethod = this._didRetrieveRecords;
     }
       
-    SC.Request.getUrl(uri)
-      .set('isJSON', YES)
-      .notify(this, notifyMethod, options)
-      .send();
+    var request = SC.Request.getUrl(uri).header({
+        'Accept': 'application/json'
+      }).json().notify(this, notifyMethod, options);
+
+    console.log('request.address: %s', request.address);
+    console.log('request: ', request);
+    request.send();
+    console.groupEnd();
+    
+    console.groupEnd();
     return YES;
   },
   
   fetch: function(store, query) {
-      options = {
+      var options = {
         store:    store,
         query:    query,
         isQuery:  YES
