@@ -67,22 +67,23 @@ Md.Ds = SC.DataSource.extend(
           query     = params.query, 
           type      = params.type,
           deffered  = params.deffered;
-          
+      
+      var storeKeys;
       if (SC.ok(response)) {
         // notify store that we handled the fetch
         if (query.get('isLocal')) {
             console.log("fetch local");
-            var storeKeys = store.loadRecords(type, response.get('body'));
+            storeKeys = store.loadRecords(type, response.get('body'));
             store.dataSourceDidFetchQuery(query);
         } else if (deffered) {
           console.log("fetch remote deffered");
-          var storeKeys = response.get('body').map(function(id) {
+          storeKeys = response.get('body').map(function(id) {
             return Md.Person.storeKeyFor(id);
           }, this);
           store.loadQueryResults(query, storeKeys);
         } else {
           console.log("fetch remote");
-          var storeKeys = store.loadRecords(type, response.get('body'));
+          storeKeys = store.loadRecords(type, response.get('body'));
           store.loadQueryResults(query, storeKeys);
         }
       // handle error case
