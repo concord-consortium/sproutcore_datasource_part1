@@ -163,6 +163,17 @@ get '/best_people' do
   best_people.to_json
 end
 
+post '/people' do
+  data = JSON.parse(request.body.read)
+  new_guid = "/people/#{people.length}"
+  data.merge({ :guid => new_guid })
+  people << data
+  response['Location'] = new_guid
+  response.status = 201
+  # puts people[params[:id].to_i - 1].to_json
+  nil
+end
+
 put '/people/:id' do
   data = JSON.parse(request.body.read)
   people[params[:id].to_i - 1] = data
