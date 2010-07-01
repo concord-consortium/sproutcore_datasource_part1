@@ -1,7 +1,6 @@
-=============================================================================
-Project:   Md
-Copyright: ©2010 My Company, Inc.
-=============================================================================
+Adding tests to Tomas Svarovsky's SproutCore DataSource sample app:
 
-TODO: Describe Your Project
+  http://www.svarovsky-tomas.com/sproutcore-datasource.html
+  http://github.com/fluke777/sproutcore_datasource_part1
 
+Some of the work adapted from http://github.com/knowuh/raclette
