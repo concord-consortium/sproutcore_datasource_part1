@@ -2,7 +2,7 @@
 // Project:   Md.Ds
 // Copyright: ©2010 My Company, Inc.
 // ==========================================================================
-/*globals Md */
+/*globals Md recordType */
 
 /** @class
 
