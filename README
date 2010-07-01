@@ -1,6 +1,27 @@
-Adding tests to Tomas Svarovsky's SproutCore DataSource sample app:
+http://github.com/concord-consortium/sproutcore_datasource_part1
+
+Adding dataSource tests to Tomas Svarovsky's SproutCore DataSource sample app:
 
   http://www.svarovsky-tomas.com/sproutcore-datasource.html
   http://github.com/fluke777/sproutcore_datasource_part1
 
 Some of the work adapted from http://github.com/knowuh/raclette
+
+Gem requirements: sinatra,  thin, json-pure
+
+Tested on ruby 1.9.2 head and SproutCore master.
+
+Starting the sinatra server:
+
+  cd server
+  ruby demo.rb -p 9393
+
+Starting the SproutCore development server
+
+  sc-server
+
+Running the dataSource tests:
+
+  fetch:  http://localhost:4020/md/en/current/tests/data_sources/sinatra/create.html
+  create: http://localhost:4020/md/en/current/tests/data_sources/sinatra/create.html
+
