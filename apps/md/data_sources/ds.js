@@ -110,15 +110,35 @@ Md.Ds = SC.DataSource.extend(
       store.loadRecords(type, data.isEnumerable ? data : [data]);
     } else store.dataSourceDidError(storeKey, response.get('body'));
   },
-    
+  
   createRecord: function(store, storeKey) {
-    console.log("createRecord");    
-    // TODO: Add handlers to submit new records to the data source.
-    // call store.dataSourceDidComplete(storeKey) when done.
-    
-    return NO ; // return YES if you handled the storeKey
+    var recordType = store.recordTypeFor(storeKey);
+    var modelName = recordType.modelName;
+    var modelHash = {};
+
+    console.group('Raclette.RailsDataSource.createRecord()');
+    SC.Request.postUrl('/' + recordType.modelsName).header({
+                    'Accept': 'application/json'
+                }).json()
+
+          .notify(this, this.didCreateRecord, store, storeKey)
+          .send(store.readDataHash(storeKey));
+    console.groupEnd();
+    return YES;
   },
   
+  didCreateRecord: function(response, store, storeKey) {
+    if (SC.ok(response)) {
+      // Adapted from parseUri 1.2.2
+      // (c) Steven Levithan <stevenlevithan.com>
+      // MIT License
+      var parser = /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+      var url = parser.exec(response.header('Location'))[8];
+      store.dataSourceDidComplete(storeKey, null, url); // update url
+
+    } else store.dataSourceDidError(storeKey, response);
+  },
+
   updateRecord: function(store, storeKey) {
     console.log("updateRecord");
     
