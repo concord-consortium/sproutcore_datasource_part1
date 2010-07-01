@@ -7,7 +7,7 @@ Adding dataSource tests to Tomas Svarovsky's SproutCore DataSource sample app:
 
 Some of the work adapted from http://github.com/knowuh/raclette
 
-Gem requirements: sinatra,  thin, json-pure
+Gem requirements: sinatra, thin, json-pure
 
 Tested on ruby 1.9.2 head and SproutCore master.
 
@@ -22,6 +22,6 @@ Starting the SproutCore development server
 
 Running the dataSource tests:
 
-  fetch:  http://localhost:4020/md/en/current/tests/data_sources/sinatra/create.html
+  fetch:  http://localhost:4020/md/en/current/tests/data_sources/sinatra/fetch.html
   create: http://localhost:4020/md/en/current/tests/data_sources/sinatra/create.html
 
