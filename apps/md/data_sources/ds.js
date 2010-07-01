@@ -52,8 +52,12 @@ Md.Ds = SC.DataSource.extend(
       console.log("Fetch");
       if (query === Md.PEOPLE_QUERY) {
         console.log("people query");
-        options['type'] = Md.Person;
-        return this._getFromUri('/people', options);
+        var recordType = Md.Person;
+        options['type'] = recordType;
+        options['modelName'] = recordType.modelName;
+        options['modelsName'] = recordType.modelsName;
+        
+        return this._getFromUri('/' + options['modelsName'], options);
       }
     return NO;
   },
