@@ -33,3 +33,7 @@ Md.Project = SC.Record.extend(
   }
   
 }) ;
+
+// these class variables, and help the datastores create 'conventional' urls.
+Md.Project.modelName = "project";
+Md.Project.modelsName = "projects";

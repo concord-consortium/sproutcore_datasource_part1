@@ -20,3 +20,7 @@ Md.Task = SC.Record.extend(
   }),
   
 }) ;
+
+// these class variables, and help the datastores create 'conventional' urls.
+Md.Task.modelName = "task";
+Md.Task.modelsName = "tasks";

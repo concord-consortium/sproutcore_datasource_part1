@@ -54,3 +54,7 @@ Md.Person = SC.Record.extend(
   }.observes('name')
   
 });
+
+// these class variables, and help the datastores create 'conventional' urls.
+Md.Person.modelName = "person";
+Md.Person.modelsName = "people";
